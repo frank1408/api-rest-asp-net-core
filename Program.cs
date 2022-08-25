@@ -7,6 +7,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// usar minuscula para dominio/api/controlador
+// en lugar de usar algo asi .../api/Controlador
+builder.Services.AddRouting( routing => routing.LowercaseUrls = true );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
