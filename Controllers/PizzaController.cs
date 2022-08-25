@@ -24,7 +24,12 @@ namespace ContosoPizza.Controllers
 
 		// http method GET all action
 		[Microsoft.AspNetCore.Mvc.HttpGet]
+		// Return Respuesta 200 Http OK
+		[ProducesResponseType(StatusCodes.Status200Ok, Type=typeof(Pizza) )]
+		// Return Respuesta 404 Http NotFound
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public Microsoft.AspNetCore.Mvc.ActionResult<List<Pizza>> GetAll() => PizzaService.GetAll();
+		//public async Task<IActionResult> GetPizzas() => throw new NotImplementedException();
 		// get || read
 
 
@@ -32,7 +37,12 @@ namespace ContosoPizza.Controllers
 
 		// http method GET by Id action
 		[Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
+		// Return Respuesta 200 Http OK
+		[ProducesResponseType(StatusCodes.Status200Ok, Type=typeof(Pizza) )]
+		// Return Respuesta 404 Http NotFound
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public Microsoft.AspNetCore.Mvc.ActionResult<Pizza> Get(int id)
+		//public async Task<IActionResult> GetPizza(int id)
 		{
 			var pizza = PizzaService.Get(id);
 			if (pizza is null)
@@ -40,6 +50,8 @@ namespace ContosoPizza.Controllers
 				// error 404
 				return this.NotFound();
 			}
+			// var vacio = new Pizza();
+			// return new OkObjectResult( vacio );
 			return pizza;
 		} // get || read
 
@@ -49,10 +61,16 @@ namespace ContosoPizza.Controllers
 
 		// http method POST action
 		[Microsoft.AspNetCore.Mvc.HttpPost]
+		// Return Respuesta 201 Http OK
+		[ProducesResponseType(StatusCodes.Status201Created, Type=typeof(Pizza) )]
+		// Return Respuesta 404 Http NotFound
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public Microsoft.AspNetCore.Mvc.IActionResult Create(Pizza pizza)
 		{
 			ContosoPizza.Services.PizzaService.Add(pizza);
 			return this.CreatedAtAction( nameof(this.Create), new { id = pizza.Id }, pizza );
+			// var vacio = new Pizza();
+			// return new CreatedResult($"dominio/api/pizza/{vacio.Id}", null);
 		} // Post || Create
 
 
@@ -61,6 +79,8 @@ namespace ContosoPizza.Controllers
 
 		// http method PUT action
 		[Microsoft.AspNetCore.Mvc.HttpPut("{id}")]
+		// Return Respuesta 200 Http OK
+		[ProducesResponseType(StatusCodes.Status200Ok, Type=typeof(bool) )]
 		public Microsoft.AspNetCore.Mvc.IActionResult Update(int id, Pizza pizza)
 		{
 			if ( id != pizza.Id )
@@ -88,6 +108,8 @@ namespace ContosoPizza.Controllers
 
 		// http method DELETE action
 		[Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
+		// Return Respuesta 200 Http OK
+		[ProducesResponseType(StatusCodes.Status200Ok, Type=typeof(bool) )]
 		public Microsoft.AspNetCore.Mvc.IActionResult Delete(int id)
 		{
 			var pizza = ContosoPizza.Services.PizzaService.Get(id);
@@ -100,6 +122,7 @@ namespace ContosoPizza.Controllers
 			ContosoPizza.Services.PizzaService.Delete(id);
 
 			return this.NoContent();
+			// return new NotImplementedException();
 		} // Delete
 
 
