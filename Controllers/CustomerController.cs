@@ -7,7 +7,15 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 using ProyectoApi.Models;
 using ProyectoApi.Repositories;
-using ProyectoAPI.Services;
+
+// https://www.youtube.com/watch?v=CELr1qGkkUI
+// validaciones seguridad api rest .net core
+
+// json web token
+// https://www.youtube.com/watch?v=3NJbzf-41f0
+
+// https://www.youtube.com/watch?v=LaXmyHsXfYo
+// 3:10:29 consumir api con JS
 
 namespace ProyectoApi.Controllers
 {
@@ -15,7 +23,6 @@ namespace ProyectoApi.Controllers
 	[Route("api/[controller]")]
 	public class CustomerController : ControllerBase
 	{
-		//private CustomerService _customerService;
 		private ICustomerContext _customerContext;
 
 
@@ -25,7 +32,6 @@ namespace ProyectoApi.Controllers
 
 		public CustomerController(ICustomerContext customerContext )
 		{
-			//_customerService = customerService;
 			_customerContext = customerContext;
 		}
 
@@ -104,7 +110,6 @@ namespace ProyectoApi.Controllers
 
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Customer))]
-		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> PostCustomer( Customer customer)
 		{
 			Customer? tmpResponse = await _customerContext.CreateCustomer( customer );
@@ -112,8 +117,7 @@ namespace ProyectoApi.Controllers
 			{
 				return new NotFoundResult();
 			}
-			return new CreatedResult($"https://localhost:1234/api/customer/{tmpResponse.Id}", null );
-
+			return new CreatedResult("", null);
 		}
 
 
@@ -128,16 +132,9 @@ namespace ProyectoApi.Controllers
 
 		[HttpPut("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-		//[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> PutCustomer(int id, Customer tmpCustomer)
 		{
-			//Customer? resultado = await _customerContext.UpdateCustomer(tmpCustomer);
 			await _customerContext.UpdateCustomer(tmpCustomer);
-
-			//if ( resultado is null )
-			//{
-			//	return new NotFoundResult();
-			//}
 			return new OkObjectResult(tmpCustomer);
 		}
 
@@ -156,7 +153,6 @@ namespace ProyectoApi.Controllers
 
 		[HttpDelete("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-		//[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> DeleteCustomer(int id)
 		{
 			bool resultado = await _customerContext.DeleteCustomer(id);
