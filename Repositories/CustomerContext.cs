@@ -32,6 +32,7 @@ namespace ProyectoApi.Repositories
 
 		public async Task<Customer?> ReadCustomer(long id)
 		{
+			// get 1
 			return await this.Customer.FirstOrDefaultAsync(tmpCustomer => tmpCustomer.Id == id);
 			// OK return await this.Customer.FirstAsync(tmpCustomer => tmpCustomer.Id == id);
 		}
@@ -42,6 +43,7 @@ namespace ProyectoApi.Repositories
 
 		public async Task<Customer?> CreateCustomer(Customer tmpCustomer)
 		{
+			// post
 			EntityEntry<Customer> response = await Customer.AddAsync(tmpCustomer);
 
 			await this.SaveChangesAsync();
@@ -60,6 +62,7 @@ namespace ProyectoApi.Repositories
 
 		public async Task<List<Customer>> ReadCustomers()
 		{
+			// get all
 			return await this.Customer.ToListAsync();
 		}
 
@@ -73,6 +76,7 @@ namespace ProyectoApi.Repositories
 
 		public async Task<bool> DeleteCustomer(long id)
 		{
+			// delete
 			Customer tmpCustomer = await this.Customer.FirstAsync(findCustomer => findCustomer.Id == id);
 			if (tmpCustomer is null)
 			{
@@ -92,6 +96,7 @@ namespace ProyectoApi.Repositories
 
 		public async Task<bool> UpdateCustomer(Customer updatedCustomer)
 		{
+			// update
 			this.Customer.Update(updatedCustomer);
 			await SaveChangesAsync();
 			return true;
