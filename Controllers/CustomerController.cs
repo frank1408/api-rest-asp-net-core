@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -21,6 +22,7 @@ namespace ProyectoApi.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
+	[EnableCors]
 	public class CustomerController : ControllerBase
 	{
 		private ICustomerContext _customerContext;
@@ -53,6 +55,9 @@ namespace ProyectoApi.Controllers
 		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Customer>))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		//[EnableCors(origins: "*", headers: "*", methods: "*")]
+		//[EnableCors]
+		//[DisableCors]
 		public async Task<IActionResult> GetCustomers()
 		{
 			List<Customer> tmpResponse = await _customerContext.ReadCustomers();
@@ -159,14 +164,23 @@ namespace ProyectoApi.Controllers
 
 		[HttpDelete("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
+		[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(bool))]
 		public async Task<IActionResult> DeleteCustomer(int id)
 		{
-			bool resultado = await _customerContext.DeleteCustomer(id);
-			if ( resultado == false )
+			Customer? existe = await _customerContext.ReadCustomer(id);
+			if (existe != null)
 			{
-				return new NotFoundResult();
+				bool resultado = await _customerContext.DeleteCustomer(id);
+
+				if (resultado)
+				{
+					return new OkObjectResult(resultado);
+				}
+				return new NotFoundResult(); // no se pudo eliminar aunque existe
 			}
-			return new OkObjectResult(resultado);
+
+			// no existe
+			return new NotFoundResult();
 		}
 
 

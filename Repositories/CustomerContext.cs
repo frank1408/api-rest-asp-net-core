@@ -77,14 +77,15 @@ namespace ProyectoApi.Repositories
 		public async Task<bool> DeleteCustomer(long id)
 		{
 			// delete
-			Customer tmpCustomer = await this.Customer.FirstAsync(findCustomer => findCustomer.Id == id);
-			if (tmpCustomer is null)
+			Customer? tmpCustomer = await Customer.FirstOrDefaultAsync(findCustomer => findCustomer.Id == id);
+			if (tmpCustomer != null)
 			{
-				return false;
+				Customer.Remove(tmpCustomer);
+				SaveChanges();
+				return true;
 			}
-			this.Customer.Remove(tmpCustomer);
-			SaveChanges();
-			return true;
+			
+			return false;
 		}
 
 

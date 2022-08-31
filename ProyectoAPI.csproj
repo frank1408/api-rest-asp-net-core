@@ -11,6 +11,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Cors" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +20,8 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Repositories\" />
     <None Remove="MySql.EntityFrameworkCore" />
+    <None Remove="Microsoft.AspNetCore.Cors" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Cors" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
