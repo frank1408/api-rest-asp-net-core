@@ -33,8 +33,8 @@ namespace ProyectoApi.Repositories
 		public async Task<Customer?> ReadCustomer(long id)
 		{
 			// get 1
-			return await this.Customer.FirstOrDefaultAsync(tmpCustomer => tmpCustomer.Id == id);
-			// OK return await this.Customer.FirstAsync(tmpCustomer => tmpCustomer.Id == id);
+			//return await this.Customer.FirstOrDefaultAsync(tmpCustomer => tmpCustomer.Id == id);
+			return await this.Customer.FirstAsync(tmpCustomer => tmpCustomer.Id == id);
 		}
 
 
@@ -98,7 +98,8 @@ namespace ProyectoApi.Repositories
 		public async Task<bool> UpdateCustomer(Customer updatedCustomer)
 		{
 			// update
-			this.Customer.Update(updatedCustomer);
+			Customer.Update(updatedCustomer);
+			SaveChanges();
 			await SaveChangesAsync();
 			return true;
 		}

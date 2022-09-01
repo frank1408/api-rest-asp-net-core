@@ -137,16 +137,16 @@ namespace ProyectoApi.Controllers
 
 		[HttpPut("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(bool))]
-		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		//[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		public async Task<IActionResult> PutCustomer(int id, Customer tmpCustomer)
 		{
-			Customer? existe = await _customerContext.ReadCustomer(id);
-			if( existe != null )
-			{
+			//Customer? existe = await _customerContext.ReadCustomer(id);
+			//if( existe != null )
+			//{
 				await _customerContext.UpdateCustomer(tmpCustomer);
 				return new OkObjectResult(tmpCustomer);
-			}
-			return new BadRequestResult();
+			//}
+			//return new BadRequestResult();
 		}
 
 

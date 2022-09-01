@@ -1,24 +1,21 @@
 ﻿<Properties StartupConfiguration="{8C4961F3-C6FD-4AC2-99DB-2540DF1ED800}|Default">
+  <MonoDevelop.Ide.ItemProperties.ProyectoAPI PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="Repositories/CustomerContext.cs">
     <Files>
-      <File FileName="Controllers/CustomerController.cs" Line="73" Column="1" />
-      <File FileName="Repositories/CustomerContext.cs" Line="40" Column="1" />
+      <File FileName="Controllers/CustomerController.cs" Line="137" Column="1" />
+      <File FileName="Repositories/CustomerContext.cs" Line="110" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="ProyectoApi" expanded="True">
             <Node name="ProyectoAPI" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
-              <Node name="Repositories" expanded="True">
-                <Node name="CustomerContext.cs" selected="True" />
-              </Node>
+              <Node name="Repositories" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -28,11 +25,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.ProyectoAPI PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
